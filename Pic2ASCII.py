@@ -1,12 +1,12 @@
 from PIL import Image
 
-#TODO: add more chars
-ASCII = (' ', ',' , '.', '~', '!', '+', ':', 'v', 'c', 'I', 'o', 'w', '0', 'X', 'P', '$', '#', '*', 'R', 'B', '@')
+ASCII = (' ', '-', '_', '+', '!', 'l', 'I', '?', '/', '|', '1', '*', 'r', 'c', 'v', 'u', 'n', 'x', 'z', 'j', 'f', 't', 'o', 'a', 'h', 'k', 'b', 'd', 'p', 'q', 'w', 'm', 'L', 'C', 'J', 'U', 'Y', 'X', 'Z', 'O', '0', 'Q', 'W', 'M', 'B', '8', '&', '%', '$', '#', '@')
 
-def togray(c):
-	r,g,b = c[0], c[1], c[2]
+def togray(R, G, B):
+	r,g,b = R, G, B
 	gray = int((0.3 * r) + (0.59 * g) + (0.11 * b))
-	return (gray, gray, gray)
+	return gray
+
 
 im = Image.open('input.png')
 pixels = im.load()
@@ -32,8 +32,8 @@ for y in range(0, HEIGHT, sq_size):
 		R = int(R / sq2)
 		G = int(G / sq2)
 		B = int(B / sq2)
-		gray = togray((R, G, B))
-		g = gray[0]
+		gray = togray(R, G, B)
+		g = gray
 		char = ASCII[int(g / len(ASCII))]
 		file.write(char+char)
 	file.write('\n')
